@@ -9,12 +9,11 @@ class TodoEntry extends Component {
     }
 
     handleKeyDown(event) {
-        if(event.keyCode !== 13){
+        if(event.keyCode !== 13 || this.state.value === ''){
             return ;
         }
         event.preventDefault();
         todoStore.addTodo(this.state.value);
-        console.log(todoStore.num)
         this.setState({
             value : ''
         })

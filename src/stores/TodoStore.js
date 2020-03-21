@@ -24,6 +24,14 @@ class TodoStore {
         if(this.todos.length === 0){
             document.getElementById('footer').style.display = 'none';
         }
+        for (let i = 0; i < this.todos.length; i++) {
+            if(this.todos[i].completed){
+                document.getElementById('clearCompleted').style.display = 'block';
+                break;
+            }else{
+                document.getElementById('clearCompleted').style.display = 'none';
+            }
+        }
         this.countUnDo()
     }
 

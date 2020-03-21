@@ -11,6 +11,15 @@ class TodoItem extends Component {
     changeActive = () => {
         this.props.todo.changeToggle()
         TodoStore.countUnDo();
+        
+        for (let i = 0; i < TodoStore.todos.length; i++) {
+            if(TodoStore.todos[i].completed){
+                document.getElementById('clearCompleted').style.display = 'block';
+                break;
+            }else{
+                document.getElementById('clearCompleted').style.display = 'none';
+            }
+        }
     }
 
     render() {
