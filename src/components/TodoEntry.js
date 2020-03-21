@@ -1,13 +1,36 @@
 import React, { Component } from "react";
 
+import todoStore from '../stores/TodoStore';
+
 
 class TodoEntry extends Component {
+    state = {
+        value : ''
+    }
+
+    handleKeyDown(event) {
+        if(event.keyCode !== 13){
+            return ;
+        }
+        event.preventDefault();
+        todoStore.addTodo(this.state.value);
+        console.log(todoStore.num)
+        this.setState({
+            value : ''
+        })
+    }
+
     render() {
         return (
             <header className="header">
                 <h1>todo</h1>
                 <input 
                     type="text"
+                    value = {this.state.value}
+                    onChange={event => this.setState({value : event.target.value})}
+                    onKeyDown={
+                        event => this.handleKeyDown(event)
+                    }
                     className="new-todo"
                     placeholder="What needs to be done?"
                 />
